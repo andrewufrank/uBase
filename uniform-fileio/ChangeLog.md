@@ -16,3 +16,6 @@
     prepare for 9.2.1 
 0.1.3  changed for ExceptionT (stat ErrorT)
 0.1.3.1 added renameToBak8 in TypedFiles
+
+0.1.5 branch for ghc 9.2.5
+0.1.5.1
