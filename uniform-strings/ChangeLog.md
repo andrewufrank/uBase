@@ -23,3 +23,6 @@
     instance shownice 
     added shownice with 4 digits precision
         showAsLines - shows list, inside is shown regularly, does not propagate
+
+0.1.5 branch for ghc 9.2.5
+0.1.5.1
