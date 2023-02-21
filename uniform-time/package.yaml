@@ -1,0 +1,71 @@
+name: uniform-time
+version: 0.1.3
+license:      GPL-2.0-only
+# license-file: GPL_3
+maintainer:   Andrew U. Frank <uniform@gerastree.at>
+bug-reports:  https://github.com/andrewufrank/uniform-time/issues
+author:       Andrew Frank
+copyright:    2021 Andrew U. Frank
+category: Time Uniform
+synopsis: Time in the uniform framework
+description: |
+  A very small package for time
+
+  bridges between function on 
+
+  - UTCTime
+
+  - EpochTime
+
+  with an `IsString` for UTCTime
+
+  added stack build lts 19.16 for ghc 9.0.2
+
+  Please see the README on GitHub at <https://github.com/andrewufrank/uniform-time/readme>
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+dependencies:
+- base >= 4.7 && < 5
+- monads-tf
+- time 
+- convertible
+- uniform-strings 
+- uniform-error
+- uniform-algebras
+
+library:
+  source-dirs: 
+  - .
+  verbatim:
+    autogen-modules:
+        Paths_uniform_time
+
+# this is only a library, no directly executable
+# executables:
+#   primo-exe:
+#     main:                Testing.hs
+#     source-dirs:         app
+#     ghc-options:
+#     - -threaded
+#     - -rtsopts
+#     - -with-rtsopts=-N
+#     dependencies:
+#     - uniform-algebras
+
+# tests:
+#   strings-test:
+#     main:                TestingTime.hs
+#     source-dirs:         test
+#     ghc-options:
+#     - -threaded
+#     - -rtsopts
+#     - -with-rtsopts=-N
+#     dependencies:
+#     - uniform-time
+#     - uniform-algebras
+#     - HTF
+#     - quickcheck-text
+#     - uniform-strings

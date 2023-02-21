@@ -1,0 +1,76 @@
+name:         uniform-strings
+version:      0.1.3.5
+license:      GPL-2.0-only
+# license-file: GPL_3
+maintainer:   Andrew U. Frank <uniform@gerastree.at>
+bug-reports:  https://github.com/andrewufrank/uniform-strings/issues
+author:       Andrew Frank
+copyright:    2021 Andrew U. Frank
+category:     Data Text Uniform
+synopsis: Manipulate and convert strings of characters uniformly and consistently
+description: |
+    Reduce complexity of Haskell by providing a 
+
+    - set of uniformly named conversion functions between 
+
+        - String, 
+    
+        - Text, 
+    
+        - ByteString, 
+    
+        - LazyByteString and 
+    
+        - urlEncoding
+    
+    with the most important text manipulation functions for string and text
+    where the semantic is the same (tested with quickcheck).
+    Tentatively some infix string manipulations are offered as well. 
+    
+      - 0.1.3 added stack build lts 19.16 for ghc 9.0.2
+      - 0.1.3.1 removed dependency on text-icu
+
+    Please see the README on GitHub at <https://github.com/andrewufrank/uniform-strings/readme>
+    
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+dependencies:
+- base  > 4.5 && < 5
+- monads-tf
+- safe  # fromJustNote
+- text
+- bytestring
+- pretty-show
+- MissingH  # replace
+- split # split on
+- snap-core # for urlEncode, for 9.2.1 problem with attoparsec <0.14
+# - text-icu
+- network-uri
+- uniform-algebras >= 0.1.4 # for zero
+
+# - utility-ht
+
+library:
+  source-dirs: 
+  - .
+  verbatim:
+    autogen-modules:
+        Paths_uniform_strings
+
+tests:
+  strings-test:
+    main:                Testing.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - HTF
+    - quickcheck-text
+    - test-invariant
+    - uniform-strings
+    - uniform-algebras

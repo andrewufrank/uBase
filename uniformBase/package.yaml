@@ -1,0 +1,82 @@
+name:                uniformBase
+version:             0.1.4.3
+license:      GPL-2.0-only
+# license-file: GPL_3
+maintainer:   Andrew U. Frank <uniform@gerastree.at>
+bug-reports:  https://github.com/andrewufrank/uniformBase/issues
+author:       Andrew Frank
+copyright:    2021 Andrew U. Frank
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+synopsis:           A uniform base to build apps on
+category:           Programming Uniform 
+
+description:  |
+  Goals:
+
+    - reducing the complexity for the programmer of applications, 
+
+    - functions with identical semantics independent of representation,
+
+    - all functions are total (or become so using Maybe or Either),
+
+    - compatible error reporting for all packages,
+
+    - avoid name clashes with other packages and assume the regular prelude,
+
+    - performance is NOT a goal - once the program logic is confirmed and tested, performance improvements can be achieved based on observations     
+
+  The packages included here deal with 
+
+    - a generally usable zero (null) value and other simplistic 
+    algebras,
+
+    - handling of text independent of represenations and principled conversion between representations,
+
+    - a minimal error reporting as text error messages,
+
+    - bringing together functions to handle time,
+
+    - uniform functions to handle files and filepaths (`Filepath` and `Path`).
+
+  Please see the README on GitHub at <https://github.com/andrewufrank/uniformBase/readme>
+
+# _ghc-options:   # &options
+#   - -Wno-deprecations
+#   - -Wno-missing-signatures
+  
+dependencies:
+- base >= 4.7 && < 5
+- data-default  # for noticeLevel
+
+- uniform-algebras >= 0.1.4.2
+- uniform-strings >=0.1.3.5
+- uniform-fileio  >=0.1.3.1
+- uniform-error   >= 0.1.3.2
+- uniform-time    >= 0.1.3
+# - uniform-pathshowcase is part of fileio
+# - uniform-json
+# - uniform-cmdLineArgs
+
+library:
+  source-dirs: 
+        - src
+  verbatim:
+    autogen-modules:
+        Paths_uniformBase
+
+# executables:
+#   startAppTest:
+#     main:                StartAppTest.hs
+#     source-dirs:         
+#       - app
+#       - uniformSources
+#     ghc-options:
+#     - -threaded
+#     - -rtsopts
+#     - -with-rtsopts=-N
+#     dependencies:
+#     - uniformBase
