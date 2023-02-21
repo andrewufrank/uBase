@@ -1,13 +1,13 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.35.0.
+-- This file has been generated from package.yaml by hpack version 0.35.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 13f487a625ea09756a27298c3d91fba548ea98027bdb5f97b7fe0a4d42afbff0
+-- hash: 48e8fb622eac601f4cfd1fb23d45df5590ebcc2b403362bf5904c35d4ed1af11
 
 name:           uniform-time
-version:        0.1.3
+version:        0.1.5.1
 synopsis:       Time in the uniform framework
 description:    A very small package for time
                 .
