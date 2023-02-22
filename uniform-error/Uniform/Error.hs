@@ -23,6 +23,7 @@ module Uniform.Error
     , module Control.Monad
     , module Control.Monad.Trans.Except
     , liftIO, MonadIO 
+    , errorT, errorWords
     , SomeException
     -- , module Control.Monad.IO.Class  
     
