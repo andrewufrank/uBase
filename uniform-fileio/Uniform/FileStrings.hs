@@ -53,6 +53,7 @@ import Uniform.Filenames
 import Uniform.Filenames as FN (toFilePath)
 import Uniform.Strings -- (Text)
 import Uniform.Error
+import qualified System.Directory as D
 
 
 closeFile2 :: SIO.Handle -> ErrIO ()
@@ -128,6 +129,11 @@ instance DirOps FilePath where
         callIO . D.removeDirectoryRecursive $ f
 
         putIOwords ["deleted", showT f]
+
+  getHomeDir   =  callIO $ D.getHomeDirectory  
+  createDirLink target link  = callIO $ D.createFileLink  target link  
+  getSymlinkTarget link = callIO $ D.getSymbolicLinkTarget link  
+  removeDirLink link = callIO $ D.removeDirectoryLink link
 
 instance FileOps FilePath where
   doesFileExist' = callIO . D.doesFileExist
@@ -260,6 +266,11 @@ instance DirOps (Path Abs Dir) where
 
   deleteDirRecursive f = deleteDirRecursive (unL f)
 
+  getHomeDir   =  callIO $ PathIO.getHomeDir 
+  createDirLink target link  = callIO $ PathIO.createDirLink  target link  
+  getSymlinkTarget link = callIO $ PathIO.getSymlinkTarget link  
+  removeDirLink link = callIO $ PathIO.removeDirLink link
+
 instance DirOps (Path Rel Dir) where
   doesDirExist' = PathIO.doesDirExist
 
@@ -285,6 +296,12 @@ instance DirOps (Path Rel Dir) where
   copyDirRecursive old new = PathIO.copyDirRecur (unPath old) (unPath new)
 
   deleteDirRecursive f = deleteDirRecursive (unL f)
+
+-- just copied from above
+--   getHomeDir   =  callIO $ PathIO.getHomeDir -- result is absolute
+  createDirLink target link  = callIO $ PathIO.createDirLink  target link  
+  getSymlinkTarget link = callIO $ PathIO.getSymlinkTarget link  
+  removeDirLink link = callIO $ PathIO.removeDirLink link
 
 instance (Show (Path ar File)) => FileOps (Path ar File) where
   doesFileExist' = PathIO.doesFileExist . unPath

@@ -4,10 +4,10 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f8efd3ca4edd743a45917e447d95e8fa75fbd0b32b54dc32d9282b2a502344fc
+-- hash: 93b5932d6626bc05e8b364396d1907a8f730f6541bc69db156dcc76a3cbf12b4
 
 name:           uniform-fileio
-version:        0.1.5.1
+version:        0.1.5.2
 synopsis:       Uniform file handling operations
 description:    Uniform operations for handling files and file path names
                 independent from the representation. 

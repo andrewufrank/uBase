@@ -73,6 +73,20 @@ class DirOps fp where
   deleteDirRecursive :: fp -> ErrIO ()
   -- ^ delete a directory (even non empty), no error if not existing
 
+--   (getHomeDir, createDirLink, getSymlinkTarget, removeDirLink)
+  getHomeDir ::   ErrIO fp 
+  -- ^ get the path to the home dir of the current user 
+
+  createDirLink :: fp -> fp -> ErrIO () 
+  -- createDirLink to the target (1) as link (2) 
+  -- fails if the link exists already
+
+  getSymlinkTarget :: fp -> ErrIO FilePath 
+  -- get the target for the link given 
+
+  removeDirLink :: fp -> ErrIO () 
+  -- remove the link 
+
 class (Show fp) => FileOps fp where
   doesFileExist' :: fp -> ErrIO Bool
 
