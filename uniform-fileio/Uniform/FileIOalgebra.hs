@@ -148,6 +148,10 @@ class (Show fp) => FileOps fp where
 
   openFile2handle :: fp -> IOMode -> ErrIO Handle
 
+--   getDataFileName :: FilePath -> ErrIO fp 
+  -- get the file name for a file names in extra-sources in cabal 
+  -- cannot put in uniform, because must import the Paths_packagename
+
 -- | operations on dir to produce file
 class (Show fd, Show ff) => FileOps2a fd ff where
   getDirContentFiles :: fd -> ErrIO [ff]
