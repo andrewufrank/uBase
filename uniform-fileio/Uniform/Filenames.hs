@@ -15,6 +15,9 @@
 -- | the operations on filenames and extensions
 --  uses the Path library, but wraps it in Path (to construct a read)
 -- is a class except for the make
+-- todo : there is too much slack in overloading FilePath and Path 
+-- remove unPath 
+-- check with the Path module from Shake!
 module Uniform.Filenames
   ( module Uniform.Filenames,
     module Uniform.Error,
