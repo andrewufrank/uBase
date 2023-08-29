@@ -85,13 +85,13 @@ makeRelFile :: FilePath -> Path Rel File
 makeRelDir :: FilePath -> Path Rel Dir
 makeAbsFile :: FilePath -> Path Abs File
 makeAbsDir :: FilePath -> Path Abs Dir
-makeRelFile fn = fromJustNote ("makeRelFile " ++ fn) $ Path.parseRelFile fn
+makeRelFile fn = fromJustNote ("makeRelFile " ++ fn ++ "|") $ Path.parseRelFile fn
 
-makeRelDir fn = fromJustNote ("makeRelDir " ++ fn) $ Path.parseRelDir fn
+makeRelDir fn = fromJustNote ("makeRelDir " ++ fn ++ "|") $ Path.parseRelDir fn
 
-makeAbsFile fn = fromJustNote ("makeAbsFile " ++ fn) $ Path.parseAbsFile fn
+makeAbsFile fn = fromJustNote ("makeAbsFile " ++ fn ++ "|") $ Path.parseAbsFile fn
 
-makeAbsDir fn = fromJustNote ("makeAbsDir " ++ fn) $ Path.parseAbsDir fn
+makeAbsDir fn = fromJustNote ("makeAbsDir " ++ fn ++ "|") $ Path.parseAbsDir fn
 
 makeRelFileT :: Text -> Path Rel File
 makeRelDirT :: Text -> Path Rel Dir
@@ -185,8 +185,8 @@ instance Filenames3 FilePath FilePath where
 instance Filenames (Path ar File) (Path Rel File) where
   getFileName = Path.filename . unPath
 
-instance Filenames3 (Path b Dir) FilePath where
-  type FileResultT (Path b Dir) FilePath = (Path b File)
+instance Filenames3 (Path Rel Dir) FilePath where
+  type FileResultT (Path Rel Dir) FilePath = (Path Rel File)
   addFileName p d =
     if null' d
       then error ("addFileName with empty file" ++ d)
@@ -194,26 +194,37 @@ instance Filenames3 (Path b Dir) FilePath where
     where
       d2 = makeRelFile d :: Path Rel File
 
+instance Filenames3 (Path Abs Dir) FilePath where
+  type FileResultT (Path Abs Dir) FilePath = (Path Abs File)
+  addFileName p d =
+    if null' d
+      then error ("addFileName with empty file" ++ d)
+      else (Path.</>) (unPath p) (unPath d2)
+    where
+      d2 = makeRelFile d :: Path Rel File
+      
+instance Filenames3 (Path b Dir) (Path Rel File) where
+  type FileResultT (Path b Dir) (Path Rel File) = (Path b File)
+  addFileName p d = (Path.</>) (unPath p) (unPath d)
+
 instance Filenames4 FilePath FilePath where
   type FileResultT4 FilePath FilePath = FilePath
   addDir p d = if null' d then p else p </> d
 
-instance Filenames4 (Path b Dir) FilePath where
-  type FileResultT4 (Path b Dir) FilePath = (Path b Dir)
+instance Filenames4 (Path Rel Dir) FilePath where
+  type FileResultT4 (Path Rel Dir) FilePath = (Path Rel Dir)
   addDir p d =
     if null' d
       then p
-      else p </> d2
+      else (Path.</>) p   d2
     where
       d2 = makeRelDir d :: Path Rel Dir
 
-instance Filenames4 (Path b Dir) (Path Rel t) where
-  type FileResultT4 (Path b Dir) (Path Rel t) = (Path b t)
+instance Filenames4 (Path b Dir) (Path Rel Dir) where
+  type FileResultT4 (Path b Dir) (Path Rel Dir) = (Path b Dir)
   addDir p d = (Path.</>) (unPath p) (unPath d)
 
-instance Filenames3 (Path b Dir) (Path Rel t) where
-  type FileResultT (Path b Dir) (Path Rel t) = (Path b t)
-  addFileName p d = (Path.</>) (unPath p) (unPath d)
+
 
 instance Filenames1 (Path ar File) where
   getNakedFileName = getNakedFileName . toFilePath
@@ -231,7 +242,7 @@ instance Filenames1 FilePath where
   getNakedFileName = removeExtension . getFileName
   getImmediateParentDir = (!! 1) . reverse . S.splitDirectories
   getParentDir = S.takeDirectory
-  getNakedDir = (!! 0) . reverse . S.splitDirectories
+  getNakedDir =  (!! 0) . reverse . S.splitDirectories
 
 class (Eq (ExtensionType fp)) => Extensions fp where
   -- extension do not include a leading '.'

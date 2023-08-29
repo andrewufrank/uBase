@@ -49,7 +49,7 @@ dependencies:
 - snap-core # for urlEncode, for 9.2.1 problem with attoparsec <0.14
 # - text-icu
 - network-uri
-- uniform-algebras >= 0.1.5 # for zero
+- uniform-algebras   # for zero
 
 # - utility-ht
 

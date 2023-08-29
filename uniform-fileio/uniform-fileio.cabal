@@ -1,10 +1,10 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.35.3.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 93b5932d6626bc05e8b364396d1907a8f730f6541bc69db156dcc76a3cbf12b4
+-- hash: 9dde89bd3465d60c893795e91acbfd5dd9d0173d120a3675853b9e01c4d69848
 
 name:           uniform-fileio
 version:        0.1.5.2
@@ -51,7 +51,7 @@ library
     , exceptions
     , filepath
     , monads-tf
-    , path
+    , path >=0.9.2
     , path-io
     , pipes
     , pureMD5
@@ -90,7 +90,7 @@ test-suite fileio-test
     , exceptions
     , filepath
     , monads-tf
-    , path
+    , path >=0.9.2
     , path-io
     , pipes
     , pureMD5

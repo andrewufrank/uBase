@@ -4,3 +4,7 @@ packages:
     ../uniform-strings/*.cabal
     ../uniform-error/*.cabal
     ../uniform-time/*.cabal
+
+-- allow-newer: all 
+-- problem is monatds-tf and transformers 0.6.1.0 
+-- needs fixing in monads-tf-0.1.0.3

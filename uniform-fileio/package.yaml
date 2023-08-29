@@ -34,7 +34,7 @@ dependencies:
 - deepseq
 - unix
 - pipes
-- path
+- path >=0.9.2
 - path-io
 - filepath
 - exceptions

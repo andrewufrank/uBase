@@ -1,7 +1,12 @@
 packages: 
     ./*.cabal
-    ../uniform-algebras/*.cabal
+-- 
+   ../uniform-algebras/*.cabal
+--
     ../uniform-strings/*.cabal
+--
     ../uniform-error/*.cabal
+--
     ../uniform-time/*.cabal
+--
     ../uniform-fileio/*.cabal
